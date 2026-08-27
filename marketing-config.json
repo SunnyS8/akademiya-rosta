@@ -1,21 +1,14 @@
 {
-  "siteName": "Академия взаимоотношений",
-  "domain": "http://localhost:5173",
-  "marketingTools": {
-    "seo": {
-      "enabled": true,
-      "keywords": ["отношения", "психология", "курсы", "обучение", "гармония"],
-      "targetAudience": "Пары и люди, ищущие гармонию в отношениях"
-    },
-    "leadCapture": {
-      "enabled": true,
-      "destination": "sales-pipeline",
-      "fields": ["name", "email", "phone", "message"]
-    },
-    "analytics": {
-      "enabled": false,
-      "provider": "google-analytics"
-    }
-  },
-  "aiMarketingSkillsPath": "../ai-marketing-skills"
+  "siteName": "Академия Роста",
+  "primaryKeyword": "детский психолог Ставрополь",
+  "targetAudience": "Родители детей и подростков",
+  "city": "Ставрополь",
+  "contentPlan": [
+    { "topic": "Страхи у детей", "format": "карусель", "funnel": "узнаваемость" },
+    { "topic": "Истерики: что делать", "format": "Reels", "funnel": "вовлечение" },
+    { "topic": "Запись на консультацию", "format": "сторис", "funnel": "конверсия" },
+    { "topic": "Отзывы родителей", "format": "пост", "funnel": "доверие" },
+    { "topic": "Как выбрать психолога", "format": "гайд", "funnel": "экспертность" },
+    { "topic": "Подросток и школа", "format": "пост", "funnel": "вовлечение" }
+  ]
 }
