@@ -1,10 +1,21 @@
-// Vercel serverless function: пересылает заявки с лендинга «Академия Роста»
-// в Telegram и (опц.) в Google Таблицу.
+// Vercel serverless function: заявки Центра взаимоотношений GRC → Telegram + Google Таблица.
+import fs from 'fs';
+import path from 'path';
+
 const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type'
 };
+
+function loadConfig() {
+  try {
+    const raw = fs.readFileSync(path.join(process.cwd(), 'config.json'), 'utf8');
+    return JSON.parse(raw);
+  } catch (e) {
+    return null;
+  }
+}
 
 export default async function handler(req, res) {
   try {
@@ -17,33 +28,40 @@ export default async function handler(req, res) {
       res.end(JSON.stringify({ error: 'Method not allowed' })); return;
     }
 
-    console.error('LEAD raw body type=', typeof req.body);
     let body = req.body;
     if (typeof body === 'string') { try { body = JSON.parse(body); } catch (e) { body = {}; } }
     body = body || {};
-    console.error('LEAD parsed=', JSON.stringify(body).slice(0, 200));
 
-    const name = body.name || '-';
-    const phone = body.phone || '-';
-    const event = body.event || '-';
-    const note = body.note || '-';
-    const source = body.source || 'site';
+    const name = (body.name || '').toString().trim() || '-';
+    const phone = (body.phone || '').toString().trim() || '-';
+    const event = (body.event || '').toString().trim() || '-';
+    const note = (body.note || '').toString().trim() || '-';
+
+    const config = loadConfig();
+    const brand = (config && config.brand && config.brand.name) || 'Центр взаимоотношений GRC';
+    const city = (config && config.brand && config.brand.city) || '';
+
+    // Поля, совместимые с таблицей лидов:
+    // Тип мероприятия | Тема | Тренер | Дата | ФИО | Телефон | Обратная связь | Примечания
+    const type = 'Заявка с сайта' + (city ? ' (' + city + ')' : '');
 
     const token = process.env.BOT_TOKEN;
     const chat = process.env.OWNER_CHAT_ID;
     const api = process.env.BOT_API || 'https://api.telegram.org';
 
     const text =
-      '🔔 Новая заявка (Академия Роста)\n' +
-      '👤 ' + name + '\n' + '📞 ' + phone + '\n' +
-      '🎯 ' + event + '\n' + '💬 ' + note + '\n' + '🌐 ' + source;
+      '🔔 ' + type + ' — ' + brand + '\n' +
+      '👤 ' + name + '\n' +
+      '📞 ' + phone + '\n' +
+      '🎯 ' + event + '\n' +
+      '💬 ' + note;
 
     if (token && chat) {
       try {
         await fetch(api + '/bot' + token + '/sendMessage', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chat_id: chat, text: text })
+          body: JSON.stringify({ chat_id: chat, text: text, parse_mode: 'HTML' })
         });
       } catch (e) { console.error('LEAD tg err', e && e.message); }
     }
@@ -54,7 +72,9 @@ export default async function handler(req, res) {
         await fetch(sheetsUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ date: new Date().toISOString(), name, phone, event, note, source })
+          body: JSON.stringify({
+            values: [type, event, '', new Date().toISOString().slice(0, 10), name, phone, '', note]
+          })
         });
       } catch (e) { console.error('LEAD sheets err', e && e.message); }
     }
@@ -65,6 +85,6 @@ export default async function handler(req, res) {
   } catch (err) {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ error: 'HANDLER_ERR', message: String(err && err.message || err), stack: String((err && err.stack) || '').slice(0, 600) }));
+    res.end(JSON.stringify({ error: 'HANDLER_ERR', message: String(err && err.message || err) }));
   }
 }
