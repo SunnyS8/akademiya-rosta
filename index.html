@@ -3,15 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Академия Роста — Психологический Центр</title>
- <meta name="description" content="Академия Роста — психологический центр в Ставрополе (20 лет). Тренинги личностного роста, отношений и семейные расстановки. Первая встреча бесплатно, скидка 10% при записи.">
+<title>Академия Роста — психологический центр в Ставрополе</title>
+<meta name="description" content="«Академия Роста» — психологический центр в Ставрополе (20 лет). Тренинги личностного роста, отношений и семейные расстановки. Первая встреча бесплатно, скидка 10% при записи.">
+<link rel="canonical" href="https://akademiya-rosta-tau.vercel.app/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
-<meta property="og:title" content="Академия Роста — психологический центр">
- <meta property="og:description" content="Академия Роста — психологический центр в Ставрополе (20 лет). Тренинги личностного роста, отношений и семейные расстановки. Первая встреча бесплатно, скидка 10% при записи.">
+<meta property="og:title" content="Академия Роста — психологический центр в Ставрополе">
+<meta property="og:description" content="«Академия Роста» — психологический центр в Ставрополе (20 лет). Тренинги личностного роста, отношений и семейные расстановки. Первая встреча бесплатно, скидка 10% при записи.">
+<meta property="og:image" content="https://akademiya-rosta-tau.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Академия Роста — психологический центр в Ставрополе">
+<meta name="twitter:description" content="«Академия Роста» — психологический центр в Ставрополе (20 лет). Тренинги личностного роста, отношений и семейные расстановки.">
+<meta name="twitter:image" content="https://akademiya-rosta-tau.vercel.app/og-image.png">
 <meta name="theme-color" content="#2C3E35">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%237A9E7E'/><text y='48' x='32' font-size='40' text-anchor='middle'>🌿</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Академия Роста",
+  "description": "Психологический центр в Ставрополе: тренинги личностного роста, отношений, семейные расстановки. 20 лет, первая встреча бесплатно, скидка 10% при записи.",
+  "image": "https://akademiya-rosta-tau.vercel.app/og-image.png",
+  "url": "https://akademiya-rosta-tau.vercel.app/",
+  "telephone": "+7 (962) 442-22-01",
+  "email": "info@akademiya-rosta.ru",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "пер. Рылеева, 7, 4 этаж",
+    "addressLocality": "Ставрополь",
+    "addressRegion": "Ставропольский край",
+    "postalCode": "355000",
+    "addressCountry": "RU"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 45.0449,
+    "longitude": 41.9691
+  },
+  "areaServed": "Ставрополь",
+  "sameAs": [
+    "https://vk.ru/grc_stavropol",
+    "https://t.me/grc_stavropol"
+  ],
+  "openingHours": "Mo-Su 09:00-21:00",
+  "founder": { "@type": "Organization", "name": "Гуманитарный центр «Академия»" }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -25,7 +65,7 @@
     --gold: #C9A84C;
     --deep: #2C3E35;
     --text: #3A3530;
-    --muted: #7A7068;
+    --muted: #6E655C;
     --border: rgba(42,56,48,0.12);
   }
 
@@ -454,13 +494,13 @@
     display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center;
   }
 
-  .landing-hero h1 {
+  .landing-hero h1, .landing-hero h2 {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2.8rem, 4.5vw, 4.2rem); font-weight: 300;
     line-height: 1.12; color: var(--deep); margin-bottom: 1.5rem;
   }
 
-  .landing-hero h1 em { color: var(--sage-dark); font-style: italic; }
+  .landing-hero h1 em, .landing-hero h2 em { color: var(--sage-dark); font-style: italic; }
 
   .landing-hero p {
     font-size: 1rem; line-height: 1.8; color: var(--muted); margin-bottom: 2rem;
@@ -673,7 +713,7 @@
     text-align: center;
   }
 
-  .schedule-header h1 {
+  .schedule-header h1, .schedule-header h2 {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 300;
     color: var(--deep); margin-bottom: 1rem;
@@ -1066,8 +1106,8 @@
         <cite>— Алексей, 41 год, отец двоих детей</cite>
       </div>
       <div class="testimonial-item">
-        <blockquote>«"Команда на миллион" дала мне инструменты, которые я применяю каждый день. Наш отдел стал другим — живым и эффективным.»</blockquote>
-        <cite>— Екатерина, руководитель отдела</cite>
+        <blockquote>«После "Пробуждения личной силы" я перестала жить в страхе и начала действовать. Появилось ощущение, что я сама выбираю свою жизнь.»</blockquote>
+        <cite>— Ольга, 39 лет, участница тренинга</cite>
       </div>
     </div>
   </div>
@@ -1135,7 +1175,7 @@
   <section class="landing-hero">
     <div>
       <div class="landing-badge">🌿 Личностный рост</div>
-      <h1>Любить и <em>принимать</em><br>себя</h1>
+      <h2>Любить и <em>принимать</em><br>себя</h2>
       <p>Глубинный тренинг о самооценке и внутреннем мире. Откройте девять приёмов принятия себя — и сделайте первый шаг к настоящему спокойствию.</p>
       <p style="color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:2rem">
         Многие из нас годами живут в режиме «недостаточно хорош». Мы критикуем себя, сравниваем с другими и ищем счастье снаружи — в отношениях, успехе, одобрении. Этот тренинг меняет вектор: внутрь, к себе.
@@ -1305,12 +1345,12 @@
           <label>Примечание или вопрос</label>
           <textarea placeholder="Например: интересует ближайшая группа, или хочу узнать об онлайн-формате…" id="lyubit-note"></textarea>
         </div>
-        <div class="form-error" id="lyubitFormErr"></div>
+        <div class="form-error" id="lyubitFormErr" role="alert"></div>
         <button class="form-submit" onclick="submitForm('lyubitForm','lyubitSuccess')">
           Начать путь к себе →
         </button>
       </div>
-      <div class="form-success" id="lyubitSuccess">
+      <div class="form-success" id="lyubitSuccess" role="status">
         <div class="success-ico">🌿</div>
         <h4>Заявка принята!</h4>
         <p>Мы свяжемся с вами в ближайшее время. Спасибо за ваш первый шаг к себе.</p>
@@ -1364,7 +1404,7 @@
       Каталог программ
       <span style="width:2rem;height:1px;background:var(--sage)"></span>
     </div>
-    <h1>Поле <em style="color:var(--sage-dark);font-style:italic">ваших</em> возможностей</h1>
+    <h2>Поле <em style="color:var(--sage-dark);font-style:italic">ваших</em> возможностей</h2>
     <p style="color:var(--muted);max-width:560px;margin:.8rem auto 0;line-height:1.7">
       Все наши программы объединяет одна цель — помочь вам жить полнее, любить глубже и действовать из силы.
     </p>
@@ -1492,7 +1532,7 @@
     <div class="section-eyebrow" style="justify-content:center;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sage-dark);display:flex;align-items:center;gap:.8rem;margin-bottom:1rem">
       <span style="width:2rem;height:1px;background:var(--sage)"></span>Расписание<span style="width:2rem;height:1px;background:var(--sage)"></span>
     </div>
-    <h1>Ближайшие <em style="color:var(--sage-dark);font-style:italic">встречи</em></h1>
+    <h2>Ближайшие <em style="color:var(--sage-dark);font-style:italic">встречи</em></h2>
     <p style="color:var(--muted);max-width:520px;margin:.8rem auto 0;line-height:1.7">
       Тематические встречи, мини-тренинги и психологические расстановки — выберите формат, который подходит именно вам.
     </p>
@@ -1585,9 +1625,9 @@
     <div class="section-eyebrow" style="font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sage-dark);display:flex;align-items:center;gap:.8rem;margin-bottom:1rem">
       <span style="width:2rem;height:1px;background:var(--sage)"></span>О центре
     </div>
-    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;color:var(--deep);max-width:700px;line-height:1.12">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;color:var(--deep);max-width:700px;line-height:1.12">
       Место, где <em style="color:var(--sage-dark);font-style:italic">меняются</em> судьбы
-    </h1>
+    </h2>
   </section>
 
   <section class="section">
@@ -1660,9 +1700,9 @@
     <div class="section-eyebrow" style="justify-content:center;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sage-dark);display:flex;align-items:center;gap:.8rem;margin-bottom:1rem">
       <span style="width:2rem;height:1px;background:var(--sage)"></span>Запись<span style="width:2rem;height:1px;background:var(--sage)"></span>
     </div>
-      <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4.5vw,4rem);font-weight:300;color:var(--deep)">
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4.5vw,4rem);font-weight:300;color:var(--deep)">
         Запишитесь на <em style="color:var(--sage-dark);font-style:italic">сентябрь</em>
-      </h1>
+      </h2>
   </section>
 
   <div class="form-section">
@@ -1737,12 +1777,12 @@
           <label>Примечание или вопрос</label>
           <textarea placeholder="Например: «Интересует ближайшая группа» или «Хочу узнать об онлайн-формате»…" id="main-note"></textarea>
         </div>
-        <div class="form-error" id="mainFormErr"></div>
+        <div class="form-error" id="mainFormErr" role="alert"></div>
         <button class="form-submit" onclick="submitForm('mainForm','mainSuccess')">
           Отправить заявку →
         </button>
       </div>
-      <div class="form-success" id="mainSuccess">
+      <div class="form-success" id="mainSuccess" role="status">
         <div class="success-ico">💛</div>
         <h4>Заявка принята!</h4>
         <p>Мы свяжемся с вами в течение одного рабочего дня. Спасибо за доверие.</p>
@@ -1780,6 +1820,8 @@
     if (page) {
       page.classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      const h = page.querySelector('h1, h2');
+      if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
     }
     // preset event on contact page
     if (id === 'contact' && presetEvent) {
@@ -1971,7 +2013,7 @@
     </div>
     <button class="chat-close" onclick="toggleChat()" aria-label="Закрыть">×</button>
   </div>
-  <div id="chatMessages"></div>
+  <div id="chatMessages" role="log" aria-live="polite" aria-relevant="additions"></div>
   <div class="chat-foot">
     <button class="chat-cta" onclick="chatOpenContact()">📝 Записаться на программу</button>
     <div class="chat-input-row">
