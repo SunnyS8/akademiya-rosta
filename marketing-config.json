@@ -1,0 +1,21 @@
+{
+  "siteName": "Академия взаимоотношений",
+  "domain": "http://localhost:5173",
+  "marketingTools": {
+    "seo": {
+      "enabled": true,
+      "keywords": ["отношения", "психология", "курсы", "обучение", "гармония"],
+      "targetAudience": "Пары и люди, ищущие гармонию в отношениях"
+    },
+    "leadCapture": {
+      "enabled": true,
+      "destination": "sales-pipeline",
+      "fields": ["name", "email", "phone", "message"]
+    },
+    "analytics": {
+      "enabled": false,
+      "provider": "google-analytics"
+    }
+  },
+  "aiMarketingSkillsPath": "../ai-marketing-skills"
+}
