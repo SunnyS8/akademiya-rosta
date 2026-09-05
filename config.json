@@ -49,5 +49,8 @@
     { "name": "Расстановка", "category": "special", "duration": "1 день", "price": "10 000 ₽", "desc": "Глубинная работа с семейными системами и скрытыми динамиками." },
     { "name": "Трансформационная игра", "category": "special", "duration": "1 час", "price": "1 500 ₽", "desc": "Игровой формат для мягкого доступа к внутренним запросам." }
   ],
+  "admin": {
+    "password": "growth2026"
+  },
   "franchise": { "enabled": false, "cityRoutes": {} }
 }
