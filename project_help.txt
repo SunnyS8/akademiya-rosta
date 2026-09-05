@@ -1,0 +1,15 @@
+Fetching projects in sunnys8s-projects
+> Projects found under sunnys8s-projects  [2s]
+
+  Project Name             Latest Production URL                                     Updated   Node Version   
+  akademiya-rosta          https://akademiya-rosta-tau.vercel.app                    13m       24.x           
+  -kapitan-reports         https://kapitan-reports-sunnys8s-projects.vercel.app      5d        24.x           
+  foto_mix                 https://fotomix.vercel.app                                8d        24.x           
+  speech-coach             https://speech-coach-lilac.vercel.app                     9d        24.x           
+  flex                     https://flex-seven-nu.vercel.app                          11d       24.x           
+  potolok-party            https://potolok-party.vercel.app                          13d       24.x           
+  open-design-daemon       https://open-design-daemon-sunnys8s-projects.vercel.app   45d       24.x           
+  open-design              https://open-design-sunnys8s-projects.vercel.app          45d       24.x           
+  fitting                  https://fitting-fawn.vercel.app                           45d       24.x           
+  digital-sewing-planner   https://digital-sewing-planner.vercel.app                 51d       24.x           
+

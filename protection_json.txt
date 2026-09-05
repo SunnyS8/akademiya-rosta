@@ -1,0 +1,17 @@
+Retrieving project…
+{
+  "projectId": "prj_cXSuGBrremxsTcL50NzhjNsdk3qA",
+  "name": "akademiya-rosta",
+  "ssoProtection": {
+    "deploymentType": "all_except_custom_domains"
+  },
+  "gitForkProtection": true,
+  "protectionBypass": {
+    "43HA7ojCj0of7qHuBqYHaiKeU7WUzQMT": {
+      "scope": "automation-bypass",
+      "isEnvVar": true,
+      "createdAt": 1788070129777,
+      "createdBy": "874i2wIYcoWwBoEOIxUBJET5"
+    }
+  }
+}
