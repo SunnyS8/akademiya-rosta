@@ -45,8 +45,6 @@ body{font-family:'Jost',sans-serif;background:#F5F0E8;color:#3A3530;min-height:1
 .post-card p{color:#3A3530;font-size:.9rem;margin-bottom:.3rem}
 .post-card .hashtags{color:#7A9E7E;font-size:.8rem}
 .post-card .cta{color:#C4714A;font-size:.85rem;font-weight:500}
-.gen-form{margin-bottom:1rem}
-.gen-result{margin-top:1rem}
 .loading{display:inline-block;width:20px;height:20px;border:3px solid #E8E4DC;border-top-color:#7A9E7E;border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .brand-select{width:100%;padding:.6rem;border:2px solid rgba(42,56,48,.12);border-radius:8px;font-family:'Jost';font-size:.95rem;margin-bottom:.5rem}
@@ -62,21 +60,15 @@ body{font-family:'Jost',sans-serif;background:#F5F0E8;color:#3A3530;min-height:1
 <button onclick="doLogin()">Войти</button>
 </div>
 </div>
-
 <div id="dashScreen" class="dashboard" style="display:none">
-<div class="dash-header">
-<h1>⚙️ Админ-панель</h1>
-<button onclick="doLogout()">Выйти</button>
-</div>
+<div class="dash-header"><h1>⚙️ Админ-панель</h1><button onclick="doLogout()">Выйти</button></div>
 <div id="msgBox" class="msg"></div>
-
 <div class="tabs">
 <button class="tab active" onclick="showTab('content')">Контент</button>
 <button class="tab" onclick="showTab('programs')">Программы</button>
 <button class="tab" onclick="showTab('contacts')">Контакты</button>
 <button class="tab" onclick="showTab('contentgen')">Генератор контента</button>
 </div>
-
 <div id="tab-content" class="section">
 <h3>Настройки сайта</h3>
 <label>Название бренда</label><input id="cBrand" placeholder="Академия Роста">
@@ -90,13 +82,10 @@ body{font-family:'Jost',sans-serif;background:#F5F0E8;color:#3A3530;min-height:1
 <label>Telegram</label><input id="cTg" placeholder="https://t.me/grc_stavropol">
 <button class="btn-save" onclick="saveContent()" style="margin-top:1rem">Сохранить</button>
 </div>
-
 <div id="tab-programs" class="section" style="display:none">
-<h3>Программы</h3>
-<div id="progList"></div>
+<h3>Программы</h3><div id="progList"></div>
 <button class="btn-add" onclick="addProg()">+ Добавить программу</button>
 </div>
-
 <div id="tab-contacts" class="section" style="display:none">
 <h3>Контакты</h3>
 <label>Телефон</label><input id="kPhone" placeholder="+7 (9624) 42-22-01">
@@ -105,11 +94,10 @@ body{font-family:'Jost',sans-serif;background:#F5F0E8;color:#3A3530;min-height:1
 <label>Telegram</label><input id="kTg" placeholder="t.me/grc_stavropol">
 <button class="btn-save" onclick="saveContacts()" style="margin-top:1rem">Сохранить</button>
 </div>
-
 <div id="tab-contentgen" class="section" style="display:none">
 <h3>Генератор контента для соцсетей</h3>
-<p style="color:#6E655C;font-size:.85rem;margin-bottom:1rem">Генерирует посты для ВК и Telegram через AI (Gemini). Используйте бренд-профиль и SEO-ключи из конфигурации.</p>
-<div class="gen-form">
+<p style="color:#6E655C;font-size:.85rem;margin-bottom:1rem">Генерирует посты для ВК и Telegram через AI (Gemini).</p>
+<div>
 <label>Бренд</label>
 <select class="brand-select" id="genBrand">
 <option value="Академия Роста">Академия Роста</option>
@@ -126,73 +114,24 @@ body{font-family:'Jost',sans-serif;background:#F5F0E8;color:#3A3530;min-height:1
 <button class="btn-generate" onclick="generateContent()">⚡ Сгенерировать 5 постов</button>
 <div id="genLoading" style="display:none;margin-top:1rem"><span class="loading"></span> Генерация через Gemini...</div>
 </div>
-<div id="genResult" class="gen-result"></div>
+<div id="genResult" style="margin-top:1rem"></div>
 </div>
-
 </div>
-
 <script>
 const API='';let token='';
-
-async function doLogin(){
-const pass=document.getElementById('adminPass').value;
-const err=document.getElementById('loginErr');
-try{
-const r=await fetch(API+'/api/admin/auth',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pass})});
-const j=await r.json();
-if(j.ok){token=j.token;document.getElementById('loginScreen').style.display='none';document.getElementById('dashScreen').style.display='block';loadContent();}
-else{err.style.display='block';}
-}catch(e){err.style.display='block';}
-}
-
+async function doLogin(){const pass=document.getElementById('adminPass').value;const err=document.getElementById('loginErr');try{const r=await fetch(API+'/api/admin/auth',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pass})});const j=await r.json();if(j.ok){token=j.token;document.getElementById('loginScreen').style.display='none';document.getElementById('dashScreen').style.display='block';loadContent();}else{err.style.display='block';}}catch(e){err.style.display='block';}}
 function doLogout(){token='';document.getElementById('loginScreen').style.display='flex';document.getElementById('dashScreen').style.display='none';document.getElementById('adminPass').value='';}
-
 function showTab(name){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.section').forEach(s=>s.style.display='none');event.target.classList.add('active');document.getElementById('tab-'+name).style.display='block';if(name==='contentgen')return;if(name==='content')loadContent();if(name==='programs')loadPrograms();}
-
 function showMsg(text,type){const m=document.getElementById('msgBox');m.textContent=text;m.className='msg '+type;setTimeout(()=>{m.className='msg'},3000);}
-
-async function loadContent(){
-try{const r=await fetch(API+'/api/admin/content',{headers:{'Cookie':'admin_token='+token}});const j=await r.json();if(j.ok)fillForm(j.content);}catch(e){showMsg('Ошибка загрузки','err');}
-}
-
+async function loadContent(){try{const r=await fetch(API+'/api/admin/content',{headers:{'Cookie':'admin_token='+token}});const j=await r.json();if(j.ok)fillForm(j.content);}catch(e){showMsg('Ошибка загрузки','err');}}
 function fillForm(c){const b=c.brand||{};const co=c.contacts||{};document.getElementById('cBrand').value=b.name||'';document.getElementById('cCity').value=b.city||'';document.getElementById('cTagline').value=b.tagline||'';document.getElementById('cDesc').value=b.description||'';document.getElementById('cPhone').value=co.phone||'';document.getElementById('cEmail').value=co.email||'';document.getElementById('cAddress').value=co.address||'';document.getElementById('cVk').value=co.vk||'';document.getElementById('cTg').value=co.telegram||'';}
-
 async function saveContent(){const data={brand:{name:document.getElementById('cBrand').value,city:document.getElementById('cCity').value,tagline:document.getElementById('cTagline').value,description:document.getElementById('cDesc').value},contacts:{phone:document.getElementById('cPhone').value,email:document.getElementById('cEmail').value,address:document.getElementById('cAddress').value,vk:document.getElementById('cVk').value,telegram:document.getElementById('cTg').value}};try{const r=await fetch(API+'/api/admin/content',{method:'PUT',headers:{'Content-Type':'application/json','Cookie':'admin_token='+token},body:JSON.stringify(data)});const j=await r.json();showMsg(j.ok?'Сохранено ✅':'Ошибка',j.ok?'ok':'err');}catch(e){showMsg('Ошибка','err');}}
-
 async function loadPrograms(){try{const r=await fetch(API+'/api/admin/programs',{headers:{'Cookie':'admin_token='+token}});const j=await r.json();if(j.ok)renderPrograms(j.programs);}catch(e){}}
-
 function renderPrograms(progs){const list=document.getElementById('progList');list.innerHTML=progs.map(p=>`<div class="program-item"><div><h4>${p.name}</h4><div class="meta">${p.duration} · ${p.price}</div></div><div><button class="btn-danger" onclick="delProg(${p.id})">Удалить</button></div></div>`).join('');}
-
-function showProgForm(p){const list=document.getElementById('progList');const item=document.createElement('div');item.className='program-item';item.innerHTML=`<div style="width:100%"><input value="${p.name||''}" id="pfName" placeholder="Название"><input value="${p.duration||''}" id="pfDuration" placeholder="Длительность"><input value="${p.price||''}" id="pfPrice" placeholder="Цена"><textarea id="pfDesc" placeholder="Описание">${p.desc||''}</textarea></div><div><button class="btn-save" onclick="saveProg(${p.id})">Сохранить</button></div>`;list.innerHTML='';list.appendChild(item);}
-
-async function addProg(){const p={name:'Новая программа',duration:'3 дня',price:'28 000 ₽',desc:'',cat:'personal',id:Date.now()};try{const r=await fetch(API+'/api/admin/programs',{method:'POST',headers:{'Content-Type':'application/json','Cookie':'admin_token='+token},body:JSON.stringify(p)});const j=await r.json();if(j.ok){renderPrograms(j.programs);showProgForm(p);}}catch(e){}}
-
-async function delProg(id){try{const r=await fetch(API+'/api/admin/programs',{method:'DELETE',headers:{'Content-Type':'application/json','Cookie':'admin_token='+token},body:JSON.stringify({id})});const j=await r.json();if(j.ok){renderPrograms(j.programs);showMsg('Удалено','ok');}}catch(e){}}
-
-async function saveProg(id){const p={id,name:document.getElementById('pfName').value,duration:document.getElementById('pfDuration').value,price:document.getElementById('pfPrice').value,desc:document.getElementById('pfDesc').value};try{const r=await fetch(API+'/api/admin/programs',{method:'PUT',headers:{'Content-Type':'application/json','Cookie':'admin_token='+token},body:JSON.stringify(p)});const j=await r.json();if(j.ok){loadPrograms();showMsg('Сохранено ✅','ok');}}catch(e){}}
-
+async function addProg(){const p={name:'Новая программа',duration:'3 дня',price:'28 000 ₽',desc:'',cat:'personal',id:Date.now()};try{const r=await fetch(API+'/api/admin/programs',{method:'POST',headers:{'Content-Type':'application/json','Cookie':'admin_token='+token},body:JSON.stringify(p)});const j=await r.json();if(j.ok){loadPrograms();showMsg('Добавлено','ok');}}catch(e){}}
+async function delProg(id){try{const r=await fetch(API+'/api/admin/programs',{method:'DELETE',headers:{'Content-Type':'application/json','Cookie':'admin_token='+token},body:JSON.stringify({id})});const j=await r.json();if(j.ok){loadPrograms();showMsg('Удалено','ok');}}catch(e){}}
 async function saveContacts(){const data={contacts:{phone:document.getElementById('kPhone').value,email:document.getElementById('kEmail').value,vk:document.getElementById('kVk').value,telegram:document.getElementById('kTg').value}};try{const r=await fetch(API+'/api/admin/content',{method:'PUT',headers:{'Content-Type':'application/json','Cookie':'admin_token='+token},body:JSON.stringify(data)});const j=await r.json();showMsg(j.ok?'Сохранено ✅':'Ошибка',j.ok?'ok':'err');}catch(e){showMsg('Ошибка','err');}}
-
-async function generateContent(){
-const topic=document.getElementById('genTopic').value.trim();
-const brand=document.getElementById('genBrand').value;
-const channel=document.getElementById('genChannel').value;
-if(!topic){showMsg('Введите тему','err');return;}
-document.getElementById('genLoading').style.display='block';
-document.getElementById('genResult').innerHTML='';
-try{
-const r=await fetch(API+'/api/admin/content-gen',{method:'POST',headers:{'Content-Type':'application/json','Cookie':'admin_token='+token},body:JSON.stringify({brand:{name:brand},topic,channel})});
-const j=await r.json();
-document.getElementById('genLoading').style.display='none';
-if(j.ok&&j.posts){
-let html='<h3 style="font-family:Cormorant Garamond,serif;color:#2C3E35;margin-bottom:1rem">Готово — 5 постов</h3>';
-j.posts.forEach((p,i)=>{
-html+=`<div class="post-card"><h4>${i+1}. ${p.title}</h4><p>${p.text}</p><div class="hashtags">${p.hashtags}</div><div class="cta">${p.cta}</div></div>`;
-});
-document.getElementById('genResult').innerHTML=html;
-}else{showMsg('Ошибка генерации','err');}
-}catch(e){document.getElementById('genLoading').style.display='none';showMsg('Ошибка сети','err');}
-}
+async function generateContent(){const topic=document.getElementById('genTopic').value.trim();if(!topic){showMsg('Введите тему','err');return;}document.getElementById('genLoading').style.display='block';document.getElementById('genResult').innerHTML='';try{const r=await fetch(API+'/api/admin/content-gen',{method:'POST',headers:{'Content-Type':'application/json','Cookie':'admin_token='+token},body:JSON.stringify({brand:{name:document.getElementById('genBrand').value},topic,channel:document.getElementById('genChannel').value})});const j=await r.json();document.getElementById('genLoading').style.display='none';if(j.ok&&j.posts){let html='<h3 style="font-family:Cormorant Garamond,serif;color:#2C3E35;margin-bottom:1rem">Готово — 5 постов</h3>';j.posts.forEach((p,i)=>{html+=`<div class="post-card"><h4>${i+1}. ${p.title}</h4><p>${p.text}</p><div class="hashtags">${p.hashtags}</div><div class="cta">${p.cta}</div></div>`;});document.getElementById('genResult').innerHTML=html;}else{showMsg('Ошибка генерации','err');}}catch(e){document.getElementById('genLoading').style.display='none';showMsg('Ошибка сети','err');}}
 </script>
 </body>
 </html>

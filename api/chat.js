@@ -40,7 +40,7 @@ export default async function handler(req, res) {
       'Ты — дружелюбный AI-консультант. Отвечай кратко и тепло на русском.';
 
     const apiKey = process.env.GEMINI_API_KEY;
-    const model = process.env.GEMINI_MODEL || 'gemini-1.5-flash';
+    const model = (process.env.GEMINI_MODEL || 'gemini-3.6-flash').trim();
     const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/' + model + ':generateContent';
 
     if (!apiKey) {
